@@ -4,13 +4,31 @@ $(function(){
   $.ajax({
     type: "GET",
     url: urlPath,
+    scriptCharset: 'UTF-8',
+    data: decodeURIComponent ,
     data: {
       city: "400040"
     },
     success: function(data){
-      var dataText = JSON.stringify(data);
 
+      for (var i in data) {
+
+      }
+      //data.find("name").each(function(){
+
+      //});
+
+      //var info = data.
+      //console.log("データだよ！："　+ JSON.stringify(info));
+
+
+
+      var dataText = JSON.stringify(data);
+      var dataText2 = $.parseXML(data.responseText);
       console.log("データ："　+ dataText);
+      console.log("データです："　+ JSON.stringify(dataText2));
+
+
 
 
     }, error: function(e) {
