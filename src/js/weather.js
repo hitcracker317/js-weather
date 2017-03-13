@@ -1,34 +1,26 @@
-var urlPath = "http://weather.livedoor.com/forecast/webservice/json/v1?city=400040";
+var apiKey = "11dcf40ee93ab1d540f1931d73bdfefa";
+var baseURL = "http://api.openweathermap.org/data/2.5/";
+
 
 $(function(){
+  apiURL = baseURL + "weather?q=tokyo&units=metric&appid=" + apiKey;
+
   $.ajax({
     type: "GET",
-    url: urlPath,
+    url: apiURL,
     scriptCharset: 'UTF-8',
-    data: decodeURIComponent ,
-    data: {
-      city: "400040"
-    },
+    dataType: "json",
     success: function(data){
+      //天気情報をを取得
+      var weather = data["weather"][0]["main"];
+      var nowTemperature = data["main"]["temp"];
+      var minTemperature = data["main"]["temp_min"];
+      var maxTemperature = data["main"]["temp_max"];
 
-      for (var i in data) {
-
-      }
-      //data.find("name").each(function(){
-
-      //});
-
-      //var info = data.
-      //console.log("データだよ！："　+ JSON.stringify(info));
-
-
-
-      var dataText = JSON.stringify(data);
-      var dataText2 = $.parseXML(data.responseText);
-      console.log("データ："　+ dataText);
-      console.log("データです："　+ JSON.stringify(dataText2));
-
-
+      console.log("天気："　+ JSON.stringify(weather));
+      console.log("気温："　+ nowTemperature);
+      console.log("最低気温："　+ minTemperature);
+      console.log("最高気温："　+ maxTemperature);
 
 
     }, error: function(e) {
